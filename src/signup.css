@@ -1,0 +1,43 @@
+.signup {
+    width: 40%;
+    margin: 30px auto;
+}
+
+
+.signup_form {
+    display: grid;
+    grid-template: repeat(3, 30px) / 20% 80%;
+    grid-column-gap: 50px;
+    grid-row-gap: 20px;
+    margin-bottom: 30px;
+}
+
+.signup_form_input {
+    border: 2px solid gainsboro;
+    border-radius: 4px;
+}
+
+.signup_form_submit {
+      text-align: center;
+}
+
+.signup_form_submit button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+
+.signup_message {
+    color: green;
+    text-align: center;
+    margin: 20px;
+}
+
+.signup_error {
+    color: red;
+}
