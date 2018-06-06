@@ -7,6 +7,13 @@ const htmlPlugin = new HtmlWebPackPlugin({
 
 
 module.exports = {
+    devServer: {
+        contentBase: './dist',
+        proxy: {
+            '/api': 'http://localhost:3000',
+        },
+    },
+    entry: ["babel-polyfill", "./src"],
     module: {
         rules: [
             {

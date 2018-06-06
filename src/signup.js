@@ -8,6 +8,7 @@ export default class Signup extends React.Component {
         this.state = {
             message: null,
             isError: false,
+            disabled: false,
         };
     }
 
@@ -32,8 +33,67 @@ export default class Signup extends React.Component {
             };
         }
 
-        
+        if (psw.length <= 6) {
+            newState = {
+                message: "Passwords must be longer than 6 characters",
+                isError: true,
+            };
+        }
+
         this.setState(newState);
+
+        if (this.state.isError) return;
+
+        const url = "/api/signup";
+        const postData = {
+            name: data.get('name'),
+            psw: psw,
+            'psw-repeat': psw_repeat,
+        };
+
+        this.setState({
+            message: "Sending request",
+            isError: false,
+            disabled: true,
+        });
+
+        fetch(url, {
+            method: 'POST', 
+            body: JSON.stringify(postData), 
+            headers:{
+              'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .catch(error => this.setState({
+            message: error,
+            isError: true,
+            disabled: false,
+        }))
+        .then(response => this.handleResponse(response));
+    }
+
+    handleResponse(response) {
+        let newState;
+
+        if (response.status === "OK") {
+            newState = {
+                message: "Signup successful!",
+                isError: false,
+                disabled: true,
+            };
+        } else {
+            newState = {
+                message: response.status,
+                isError: true,
+                disabled: false,
+            };
+        }
+
+        this.setState(newState);
+        
+        if (response.status === "OK") {
+            setTimeout(() => location.reload(), 1000);
+        }
     }
 
     render () {
@@ -52,7 +112,7 @@ export default class Signup extends React.Component {
                         {this.state.message}
                     </div>
                     <div className={styles.signup_form_submit}>
-                        <button type="submit">Sign Up</button>
+                        <button type="submit" disabled={this.state.disabled} >Sign Up</button>
                     </div>
                 </form>
 
