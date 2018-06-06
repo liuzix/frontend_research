@@ -12,23 +12,28 @@ export default class Signup extends React.Component {
     }
 
     handleSubmit(event) {
-        //alert('submitted!');
         event.preventDefault();
         const data = new FormData(event.target);
         
         const psw = data.get('psw');
         const psw_repeat = data.get('psw-repeat');
+
+        let newState;
+
         if (psw != psw_repeat) {
-            this.setState({
+            newState = {
                 message: "Passwords don't match",
                 isError: true,
-            });
+            };
         } else {
-            this.setState({
+            newState = {
                 message: null,
                 isError: false,
-            });
+            };
         }
+
+        
+        this.setState(newState);
     }
 
     render () {
