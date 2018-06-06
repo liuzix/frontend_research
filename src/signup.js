@@ -42,7 +42,7 @@ export default class Signup extends React.Component {
 
         this.setState(newState);
 
-        if (this.state.isError) return;
+        if (newState.isError) return;
 
         const url = "/api/signup";
         const postData = {
