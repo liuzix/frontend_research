@@ -15,7 +15,7 @@ export default class Signup extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
         const data = new FormData(event.target);
-        
+              
         const psw = data.get('psw');
         const psw_repeat = data.get('psw-repeat');
 
@@ -28,7 +28,7 @@ export default class Signup extends React.Component {
             };
         } else {
             newState = {
-                message: null,
+                message: null, 
                 isError: false,
             };
         }
@@ -60,6 +60,7 @@ export default class Signup extends React.Component {
         fetch(url, {
             method: 'POST', 
             body: JSON.stringify(postData), 
+            credentials: 'include',
             headers:{
               'Content-Type': 'application/json'
             }
@@ -92,7 +93,9 @@ export default class Signup extends React.Component {
         this.setState(newState);
         
         if (response.status === "OK") {
-            setTimeout(() => location.reload(), 1000);
+            setTimeout(() => {
+                window.location.href = "/";
+            }, 1000);
         }
     }
 
@@ -115,7 +118,6 @@ export default class Signup extends React.Component {
                         <button type="submit" disabled={this.state.disabled} >Sign Up</button>
                     </div>
                 </form>
-
             </div>
         );
     }

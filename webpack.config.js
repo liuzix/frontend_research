@@ -13,7 +13,7 @@ module.exports = {
             '/api': 'http://localhost:3000',
         },
     },
-    entry: ["babel-polyfill", "./src"],
+    entry: ["babel-polyfill", "./src/index.js"],
     module: {
         rules: [
             {
@@ -25,6 +25,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
+                exclude: /node_modules/,
                 use: [
                     {
                         loader: "style-loader",
@@ -38,6 +39,18 @@ module.exports = {
                             sourceMap: true,
                             minimize: true
                         }
+                    }
+                ],
+            },
+            {
+                test: /\.css$/,
+                include: /node_modules/,
+                use: [
+                    {
+                        loader: "style-loader",
+                    },
+                    {
+                        loader: "css-loader",
                     }
                 ],
             }
