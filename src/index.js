@@ -1,5 +1,3 @@
-import "babel-polyfill";
-
 import React from "react";
 import ReactDOM from "react-dom";
 import {
@@ -10,7 +8,6 @@ import {
   } from 'react-router-dom'
 
 import styles from "./index.css"
-
 import Signup from "./signup.js"
 import Login from "./login.js"
 import Home from "./home.js"

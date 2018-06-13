@@ -13,7 +13,14 @@ module.exports = {
             '/api': 'http://localhost:3000',
         },
     },
-    entry: ["babel-polyfill", "./src/index.js"],
+    entry: {
+        poly: "babel-polyfill",
+        index: "./src/index.js"
+    },
+    output: {
+        filename: '[name].bundle.js',
+        chunkFilename: '[name].bundle.js',
+    },
     module: {
         rules: [
             {
