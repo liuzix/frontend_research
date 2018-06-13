@@ -25,6 +25,7 @@
   "dependencies": {
     "babel-polyfill": "^6.26.0",
     "draft-js": "^0.10.5",
+    "hard-source-webpack-plugin": "^0.7.6",
     "react": "^16.4.0",
     "react-cookies": "^0.1.0",
     "react-dom": "^16.4.0",

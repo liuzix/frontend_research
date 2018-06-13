@@ -5,6 +5,7 @@ const htmlPlugin = new HtmlWebPackPlugin({
     filename: "./index.html",
 });
 
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 module.exports = {
     devServer: {
@@ -64,5 +65,5 @@ module.exports = {
         ]
     },
 
-    plugins: [htmlPlugin]
+    plugins: [htmlPlugin, new HardSourceWebpackPlugin()]
 };
