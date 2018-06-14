@@ -1,11 +1,17 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
 
 const htmlPlugin = new HtmlWebPackPlugin({
     template: "./src/index.html",
     filename: "./index.html",
 });
 
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
+const cssPlugin = new MiniCssExtractPlugin({
+    filename: "[name].css",
+    chunkFilename: "[id].css"
+});
+
 
 module.exports = {
     devServer: {
@@ -35,9 +41,7 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 use: [
-                    {
-                        loader: "style-loader",
-                    },
+                    MiniCssExtractPlugin.loader,
                     {
                         loader: "css-loader",
                         options: {
@@ -54,16 +58,15 @@ module.exports = {
                 test: /\.css$/,
                 include: /node_modules/,
                 use: [
-                    {
-                        loader: "style-loader",
-                    },
-                    {
-                        loader: "css-loader",
-                    }
+                    MiniCssExtractPlugin.loader,
+                    "css-loader"
                 ],
             }
         ]
     },
 
-    plugins: [htmlPlugin, new HardSourceWebpackPlugin()]
+    plugins: [htmlPlugin, 
+              new HardSourceWebpackPlugin(), 
+              cssPlugin,
+            ]
 };

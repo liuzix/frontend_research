@@ -43,6 +43,7 @@ class App extends React.Component {
                 this.setState({
                     username: null,
                 });
+                window.location.href = "/#/login";
             }
         } catch (err) {
             console.error("Error getting login status: " + err);
